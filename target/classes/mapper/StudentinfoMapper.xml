@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lhl.dao.StudentinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.lhl.po.Studentinfo" >
+    <id column="StuID" property="stuid" jdbcType="VARCHAR" />
+    <result column="StuName" property="stuname" jdbcType="VARCHAR" />
+    <result column="Profession" property="profession" jdbcType="INTEGER" />
+    <result column="Date" property="date" jdbcType="TIMESTAMP" />
+    <result column="Sex" property="sex" jdbcType="INTEGER" />
+    <result column="IDNum" property="idnum" jdbcType="VARCHAR" />
+    <result column="TotalScore" property="totalscore" jdbcType="INTEGER" />
+    <result column="Note" property="note" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from studentinfo
+    where StuID = #{stuid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.lhl.po.Studentinfo" >
+    insert into studentinfo (StuID, StuName, Profession, 
+      Date, Sex, IDNum, 
+      TotalScore, Note)
+    values (#{stuid,jdbcType=VARCHAR}, #{stuname,jdbcType=VARCHAR}, #{profession,jdbcType=INTEGER}, 
+      #{date,jdbcType=TIMESTAMP}, #{sex,jdbcType=INTEGER}, #{idnum,jdbcType=VARCHAR}, 
+      #{totalscore,jdbcType=INTEGER}, #{note,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lhl.po.Studentinfo" >
+    update studentinfo
+    set StuName = #{stuname,jdbcType=VARCHAR},
+      Profession = #{profession,jdbcType=INTEGER},
+      Date = #{date,jdbcType=TIMESTAMP},
+      Sex = #{sex,jdbcType=INTEGER},
+      IDNum = #{idnum,jdbcType=VARCHAR},
+      TotalScore = #{totalscore,jdbcType=INTEGER},
+      Note = #{note,jdbcType=VARCHAR}
+    where StuID = #{stuid,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select StuID, StuName, Profession, Date, Sex, IDNum, TotalScore, Note
+    from studentinfo
+    where StuID = #{stuid,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select StuID, StuName, Profession, Date, Sex, IDNum, TotalScore, Note
+    from studentinfo
+  </select>
+</mapper>

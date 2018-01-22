@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lhl.dao.StumarkinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.lhl.po.Stumarkinfo" >
+    <id column="Markid" property="markid" jdbcType="VARCHAR" />
+    <result column="StuID" property="stuid" jdbcType="VARCHAR" />
+    <result column="Coursename" property="coursename" jdbcType="VARCHAR" />
+    <result column="baseScore" property="basescore" jdbcType="DECIMAL" />
+    <result column="testscore" property="testscore" jdbcType="DECIMAL" />
+    <result column="FinalScore" property="finalscore" jdbcType="DECIMAL" />
+    <result column="adddate" property="adddate" jdbcType="TIMESTAMP" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from stumarkinfo
+    where Markid = #{markid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.lhl.po.Stumarkinfo" >
+    insert into stumarkinfo (Markid, StuID, Coursename, 
+      baseScore, testscore, FinalScore, 
+      adddate, note)
+    values (#{markid,jdbcType=VARCHAR}, #{stuid,jdbcType=VARCHAR}, #{coursename,jdbcType=VARCHAR}, 
+      #{basescore,jdbcType=DECIMAL}, #{testscore,jdbcType=DECIMAL}, #{finalscore,jdbcType=DECIMAL}, 
+      #{adddate,jdbcType=TIMESTAMP}, #{note,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lhl.po.Stumarkinfo" >
+    update stumarkinfo
+    set StuID = #{stuid,jdbcType=VARCHAR},
+      Coursename = #{coursename,jdbcType=VARCHAR},
+      baseScore = #{basescore,jdbcType=DECIMAL},
+      testscore = #{testscore,jdbcType=DECIMAL},
+      FinalScore = #{finalscore,jdbcType=DECIMAL},
+      adddate = #{adddate,jdbcType=TIMESTAMP},
+      note = #{note,jdbcType=VARCHAR}
+    where Markid = #{markid,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select Markid, StuID, Coursename, baseScore, testscore, FinalScore, adddate, note
+    from stumarkinfo
+    where Markid = #{markid,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select Markid, StuID, Coursename, baseScore, testscore, FinalScore, adddate, note
+    from stumarkinfo
+  </select>
+</mapper>
